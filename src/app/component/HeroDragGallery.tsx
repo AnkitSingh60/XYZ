@@ -45,11 +45,11 @@ const items = [
 ];
 
 export default function HeroDragGallery() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(2);
   const x = useMotionValue(0);
   const dragging = useRef(false);
 
-  const handleDragEnd = (_: any, info: any) => {
+  const handleDragEnd = (data: any, info: any) => {
     if (info.offset.x < -100 && activeIndex < items.length - 1) {
       setActiveIndex(activeIndex + 1);
     } else if (info.offset.x > 100 && activeIndex > 0) {
@@ -60,17 +60,17 @@ export default function HeroDragGallery() {
 
   return (
     <div
-      className={`w-full py-20 flex flex-col items-center bg-white ${workSans.className}`}
+      className={`w-full py-20 flex flex-col items-center bg-white mt-[20px] ${workSans.className}`}
     >
-      <h2 className="text-3xl font-semibold mb-4">Quality Products</h2>
-      <p className="text-gray-500 text-center max-w-xl mb-10">
+      <h2 className="text-[56px] font-[400] mb-4 leading-[72px] tracking-[-1]">Quality Products</h2>
+      <p className="font-[400] text-[#7A7777] text-center max-w-xl mb-10">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
         commodo consequat.
       </p>
 
-      <div className="relative flex justify-center items-center w-full max-w-5xl h-[400px] overflow-hidden">
+      <div className="relative flex justify-center items-center w-full max-w-5xl h-[400px] overflow-hidden mt-[100px]">
         {/* Left Image */}
         {activeIndex > 0 && (
           <div className="absolute left-10 transform -rotate-[10deg] scale-[0.85] z-0">
@@ -79,7 +79,7 @@ export default function HeroDragGallery() {
               alt="left"
               width={250}
               height={350}
-              className="rounded-lg"
+              className="rounded-lg h-[419px] w-[300px]"
             />
           </div>
         )}
@@ -98,7 +98,7 @@ export default function HeroDragGallery() {
             alt="center"
             width={300}
             height={400}
-            className="rounded-lg"
+            className="rounded-xl h-[600px]"
           />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="w-[60px] h-[60px] bg-white text-black text-sm flex items-center justify-center rounded-full shadow-lg">
@@ -115,7 +115,7 @@ export default function HeroDragGallery() {
               alt="right"
               width={250}
               height={350}
-              className="rounded-lg"
+              className="rounded-lg h-[419px] w-[300px]"
             />
           </div>
         )}
