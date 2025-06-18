@@ -37,10 +37,16 @@ export default function HeroSection() {
     }, 5000);
   };
 
-  useEffect(() => {
-    startAutoSlide();
-    return () => clearInterval(intervalRef.current!);
-  }, []);
+useEffect(() => {
+  const startAutoSlide = () => {
+    intervalRef.current = setInterval(() => {
+      changeImage();
+    }, 5000);
+  };
+
+  startAutoSlide();
+  return () => clearInterval(intervalRef.current!);
+}, []);
 
   return (
     <div className={`relative min-h-screen w-full ${workSans.className}`}>

@@ -3,10 +3,11 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Work_Sans } from "next/font/google";
 import { motion, useMotionValue, animate } from "framer-motion";
-import gsap from 'gsap'
-import ScrollTrigger from 'gsap/ScrollTrigger'
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import type { PanInfo } from "framer-motion";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 const workSans = Work_Sans({ subsets: ["latin"] });
 
@@ -53,9 +54,12 @@ export default function HeroDragGallery() {
   const x = useMotionValue(0);
   const dragging = useRef(false);
 
-  const textRef = useRef<HTMLHeadingElement>(null)
+  const textRef = useRef<HTMLHeadingElement>(null);
 
-  const handleDragEnd = (data: any, info: any) => {
+  const handleDragEnd = (
+    event: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo
+  ) => {
     if (info.offset.x < -100 && activeIndex < items.length - 1) {
       setActiveIndex(activeIndex + 1);
     } else if (info.offset.x > 100 && activeIndex > 0) {
@@ -65,7 +69,7 @@ export default function HeroDragGallery() {
   };
 
   useEffect(() => {
-    if (!textRef.current) return
+    if (!textRef.current) return;
 
     gsap.fromTo(
       textRef.current,
@@ -77,19 +81,27 @@ export default function HeroDragGallery() {
         delay: 0.3,
         scrollTrigger: {
           trigger: textRef.current,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
+          start: "top 80%",
+          toggleActions: "play none none none",
         },
       }
-    )
-  }, [])
+    );
+  }, []);
 
   return (
     <div
       className={`w-full py-20 flex flex-col items-center bg-white mt-[20px] ${workSans.className}`}
     >
-      <h2 className="text-[56px] font-[400] mb-4 leading-[72px] tracking-[-1]" ref={textRef}>Quality Products</h2>
-      <p className="font-[400] text-[#7A7777] text-center max-w-xl mb-10 sm:px-[0px] px-[35px]" ref={textRef}>
+      <h2
+        className="text-[56px] font-[400] mb-4 leading-[72px] tracking-[-1]"
+        ref={textRef}
+      >
+        Quality Products
+      </h2>
+      <p
+        className="font-[400] text-[#7A7777] text-center max-w-xl mb-10 sm:px-[0px] px-[35px]"
+        ref={textRef}
+      >
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
