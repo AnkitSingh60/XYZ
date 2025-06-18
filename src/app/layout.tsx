@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import Navbar from "./component/Navbar";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: "Apps, Webdesign, E-commerce & E-marketing | TenTwenty | Dubai UAE",
@@ -17,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Navbar />
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
